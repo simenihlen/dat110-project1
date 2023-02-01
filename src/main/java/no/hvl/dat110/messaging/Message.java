@@ -12,7 +12,7 @@ public class Message {
 		
 		// TODO - START
 
-		test
+		tes
 		
 		if (true)
 			throw new UnsupportedOperationException(TODO.constructor("Message"));
