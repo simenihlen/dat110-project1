@@ -12,10 +12,9 @@ public class Message {
 		
 		// TODO - START
 
-		tes
-		
-		if (true)
-			throw new UnsupportedOperationException(TODO.constructor("Message"));
+		if (data != null & data.length < 128) {
+			this.data = data;
+		}
 			
 		// TODO - END
 	}
