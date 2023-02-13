@@ -1,5 +1,6 @@
 package no.hvl.dat110.rpc;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 import no.hvl.dat110.TODO;
@@ -47,19 +48,32 @@ public class RPCServer {
 		   // - lookup the method to be invoked
 		   // - invoke the method
 		   // - send back the message containing RPC reply
-			
-		   if (true)
-				throw new UnsupportedOperationException(TODO.method());
-		   
-		   // TODO - END
 
-			// stop the server if it was stop methods that was called
+			try {
+				requestmsg = connection.receive();
+			} catch (IOException e) {
+				throw new RuntimeException(e);
+			}
+			rpcid = requestmsg.getData()[0];
+
 		   if (rpcid == RPCCommon.RPIDSTOP) {
 			   stop = true;
 		   }
+		   RPCRemoteImpl rpcImpl = services.get(rpcid);
+		   byte[] data = RPCUtils.decapsulate(requestmsg.getData());
+		   byte[] requestMsg = rpcImpl.invoke(data);
+		   byte[] returnMsg = RPCUtils.encapsulate(rpcid,requestMsg);
+
+		   connection.send(new Message(returnMsg));
+
+
+		   // TODO - END
+
+
+		   }
 		}
 	
-	}
+
 	
 	// used by server side method implementations to register themselves in the RPC server
 	public void register(byte rpcid, RPCRemoteImpl impl) {

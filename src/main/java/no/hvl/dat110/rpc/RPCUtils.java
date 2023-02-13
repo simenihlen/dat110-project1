@@ -77,8 +77,7 @@ public class RPCUtils {
 		
 		// TODO - START 
 		
-		if (true)
-			throw new UnsupportedOperationException(TODO.method());
+		encoded = new byte[0];
 				
 		// TODO - END
 		
@@ -124,8 +123,7 @@ public class RPCUtils {
 		
 		// TODO - START 
 		
-		if (true)
-			throw new UnsupportedOperationException(TODO.method());
+		encoded = ByteBuffer.allocate(4).putInt(x).array();
 		
 		// TODO - END
 		
@@ -139,8 +137,7 @@ public class RPCUtils {
 		
 		// TODO - START 
 		
-		if (true)
-			throw new UnsupportedOperationException(TODO.method());
+		decoded = ByteBuffer.wrap(data).getInt();
 		
 		// TODO - END
 		
